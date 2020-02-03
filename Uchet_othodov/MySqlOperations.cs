@@ -110,13 +110,13 @@ namespace Uchet_othodov
             }
         }
 
-        public string Select_ID_From_ComboBox(string query, string Value)
+        public string Select_ID_From_ComboBox(string query, string Value1)
         {
             string ID = null;
             try
             {
                 sqlCommand = new MySqlCommand(query, mySqlConnection);
-                sqlCommand.Parameters.AddWithValue("Value1", Value);
+                sqlCommand.Parameters.AddWithValue("Value1", Value1);
                 sqlDataReader = sqlCommand.ExecuteReader();
                 while (sqlDataReader.Read())
                 {
@@ -139,7 +139,7 @@ namespace Uchet_othodov
 
         }
 
-        public void Delete(string query, string query2, DataGridView dataGridView, string ID)
+        public void Delete(string query, string ID)
         {
             try
             {
@@ -151,8 +151,6 @@ namespace Uchet_othodov
             {
                 MessageBox.Show("Невозможно удалить запись(-и)." + '\n' + "Возможно она(-и) используются в других записях.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            Select_DataGridView(query2, dataGridView);
-            dataGridView.Columns[0].Visible = false;
         }
 
         public void Select_Text(string query, ref string output, string ID = null, string Value1 = null, string Value2 = null, string Value3 = null, string Value4 = null, string Value5 = null, string Value6 = null, string Value7 = null, string Value8 = null)
@@ -189,17 +187,25 @@ namespace Uchet_othodov
 
         public void Insert_Update(string query, string ID = null, string Value1 = null, string Value2 = null, string Value3 = null, string Value4 = null, string Value5 = null, string Value6 = null, string Value7 = null, string Value8 = null)
         {
-            sqlCommand = new MySqlCommand(query, mySqlConnection);
-            sqlCommand.Parameters.AddWithValue("Value1", Value1);
-            sqlCommand.Parameters.AddWithValue("Value2", Value2);
-            sqlCommand.Parameters.AddWithValue("Value3", Value3);
-            sqlCommand.Parameters.AddWithValue("Value4", Value4);
-            sqlCommand.Parameters.AddWithValue("Value5", Value5);
-            sqlCommand.Parameters.AddWithValue("Value6", Value6);
-            sqlCommand.Parameters.AddWithValue("Value7", Value7);
-            sqlCommand.Parameters.AddWithValue("Value8", Value8);
-            sqlCommand.Parameters.AddWithValue("ID", ID);
-            sqlCommand.ExecuteNonQuery();
+            try
+            {
+                sqlCommand = new MySqlCommand(query, mySqlConnection);
+                sqlCommand.Parameters.AddWithValue("Value1", Value1);
+                sqlCommand.Parameters.AddWithValue("Value2", Value2);
+                sqlCommand.Parameters.AddWithValue("Value3", Value3);
+                sqlCommand.Parameters.AddWithValue("Value4", Value4);
+                sqlCommand.Parameters.AddWithValue("Value5", Value5);
+                sqlCommand.Parameters.AddWithValue("Value6", Value6);
+                sqlCommand.Parameters.AddWithValue("Value7", Value7);
+                sqlCommand.Parameters.AddWithValue("Value8", Value8);
+                sqlCommand.Parameters.AddWithValue("ID", ID);
+                sqlCommand.ExecuteNonQuery();
+                MessageBox.Show("Операция выполнена успешно.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void Search(ToolStripTextBox textBox, DataGridView dataGridView)
