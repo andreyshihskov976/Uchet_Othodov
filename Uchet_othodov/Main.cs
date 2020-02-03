@@ -21,6 +21,20 @@ namespace Uchet_othodov
             MySqlQueries = new MySqlQueries();
             MySqlOperations = new MySqlOperations(MySqlQueries);
         }
+        private void Main_Load(object sender, EventArgs e)
+        {
+            MySqlOperations.OpenConnection();
+        }
+
+        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MySqlOperations.CloseConnection();
+        }
+
+        private void поискToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MySqlOperations.Search(toolStripTextBox1, dataGridView1);
+        }
 
         private void карточкиОтходовToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -64,7 +78,7 @@ namespace Uchet_othodov
             identify = "othody";
         }
 
-        private void Insert()
+        private void Insert_String()
         {
             if (identify == "othody")
             {
@@ -88,7 +102,7 @@ namespace Uchet_othodov
             }
         }
 
-        private void Update()
+        private void Update_String()
         {
             if (identify == "othody")
             {
@@ -112,7 +126,7 @@ namespace Uchet_othodov
             }
         }
 
-        private void Delete()
+        private void Delete_String()
         {
             if (identify == "othody")
             {
