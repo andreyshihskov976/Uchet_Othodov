@@ -44,9 +44,14 @@ namespace Uchet_othodov
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string ID_Otdela = MySqlOperations.Select_ID_From_ComboBox(MySqlQueries.Select_ID_Otdela, comboBox1.Text);
-            MySqlOperations.Insert_Update(MySqlQueries.Update_Sotrudniki, ID, textBox1.Text, textBox2.Text, textBox3.Text, ID_Otdela, textBox4.Text);
-            this.Close();
+
+            if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "" && textBox4.Text != "" && comboBox1.Text != "")
+            {
+                string ID_Otdela = MySqlOperations.Select_ID_From_ComboBox(MySqlQueries.Select_ID_Otdela, comboBox1.Text);
+                MySqlOperations.Insert_Update(MySqlQueries.Update_Sotrudniki, ID, textBox1.Text, textBox2.Text, textBox3.Text, ID_Otdela, textBox4.Text);
+                this.Close();
+            }
+            else MessageBox.Show("Присутствуют пустые поля!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

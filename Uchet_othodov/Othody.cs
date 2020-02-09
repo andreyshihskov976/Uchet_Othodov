@@ -43,8 +43,12 @@ namespace Uchet_othodov
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MySqlOperations.Insert_Update(MySqlQueries.Update_Othody, ID, textBox1.Text, comboBox2.Text, comboBox1.Text);
-            this.Close();
+            if (textBox1.Text != "" && comboBox1.Text != "" && comboBox2.Text != "")
+            {
+                MySqlOperations.Insert_Update(MySqlQueries.Update_Othody, ID, textBox1.Text, comboBox2.Text, comboBox1.Text);
+                this.Close();
+            }
+            else MessageBox.Show("Присутствуют пустые поля!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

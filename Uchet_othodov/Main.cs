@@ -29,6 +29,7 @@ namespace Uchet_othodov
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
             MySqlOperations.CloseConnection();
+            Application.Exit();
         }
 
         private void поискToolStripMenuItem_Click(object sender, EventArgs e)
@@ -117,10 +118,6 @@ namespace Uchet_othodov
                 organizacii.ShowDialog();
                 MySqlOperations.Select_DataGridView(MySqlQueries.Select_Organizacii, dataGridView1);
             }
-            else if (identify == "kartochka")
-            {
-
-            }
         }
 
         private void Update_String()
@@ -171,10 +168,6 @@ namespace Uchet_othodov
                 organizacii.ShowDialog();
                 MySqlOperations.Select_DataGridView(MySqlQueries.Select_Organizacii, dataGridView1);
             }
-            else if (identify == "kartochka")
-            {
-
-            }
         }
 
         private void Delete_String()
@@ -205,7 +198,21 @@ namespace Uchet_othodov
             }
             else if (identify == "kartochka")
             {
-
+                for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
+                    MySqlOperations.Delete(MySqlQueries.Delete_Kartochka, dataGridView1.SelectedRows[i].Cells[0].Value.ToString());
+                MySqlOperations.Select_DataGridView(MySqlQueries.Select_Kartochka, dataGridView1);
+            }
+            else if (identify == "ubytiya")
+            {
+                for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
+                    MySqlOperations.Delete(MySqlQueries.Delete_Ubytiya, dataGridView1.SelectedRows[i].Cells[0].Value.ToString());
+                MySqlOperations.Select_DataGridView(MySqlQueries.Select_Kartochka, dataGridView1);
+            }
+            else if (identify == "pribytiya")
+            {
+                for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
+                    MySqlOperations.Delete(MySqlQueries.Delete_Pribytiya, dataGridView1.SelectedRows[i].Cells[0].Value.ToString());
+                MySqlOperations.Select_DataGridView(MySqlQueries.Select_Kartochka, dataGridView1);
             }
         }
 
@@ -230,8 +237,9 @@ namespace Uchet_othodov
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (MessageBox.Show("Хотите отредактировать запись?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                Update_String();
+            if (identify != "kartochka" && identify != "pribytiya" && identify != "ubytiya")
+                if (MessageBox.Show("Хотите отредактировать запись?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    Update_String();
         }
     }
 }

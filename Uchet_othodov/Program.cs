@@ -16,7 +16,12 @@ namespace Uchet_othodov
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            Avtorizacia avtorizacia = new Avtorizacia();
+            Application.Run(avtorizacia);
+            if (avtorizacia.DialogResult == DialogResult.Yes)
+                Application.Run(new Main());
+            if (avtorizacia.DialogResult == DialogResult.No)
+                Application.Run(new User_Main(avtorizacia.ID));
         }
     }
 }
