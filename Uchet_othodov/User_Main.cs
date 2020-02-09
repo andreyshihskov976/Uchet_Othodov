@@ -195,5 +195,12 @@ namespace Uchet_othodov
             else
                 MessageBox.Show("Невозможно создать сопроводительный паспорт на основании нескольких карточек." + '\n' + "Пожалуйста выберите одну карточку, на основании которой необходимо составить сопроводительный паспорт", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
+                MySqlOperations.Delete(MySqlQueries.Delete_Kartochka, dataGridView1.SelectedRows[i].Cells[0].Value.ToString());
+            MySqlOperations.Select_DataGridView(MySqlQueries.Select_Kartochka_Otdela, dataGridView1, ID);
+        }
     }
 }

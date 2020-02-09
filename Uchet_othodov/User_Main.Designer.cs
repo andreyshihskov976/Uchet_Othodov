@@ -105,6 +105,7 @@
             this.toolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
             this.toolStripMenuItem2.Size = new System.Drawing.Size(196, 22);
             this.toolStripMenuItem2.Text = "Удалит&ь";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripSeparator6
             // 
