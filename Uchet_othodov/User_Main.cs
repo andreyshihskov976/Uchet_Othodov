@@ -198,7 +198,7 @@ namespace Uchet_othodov
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Вы точно хотите удалить карточку?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Вы точно хотите удалить карточку(-и)?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
                     MySqlOperations.Delete(MySqlQueries.Delete_Kartochka, dataGridView1.SelectedRows[i].Cells[0].Value.ToString());
