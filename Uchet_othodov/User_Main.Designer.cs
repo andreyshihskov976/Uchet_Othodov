@@ -167,6 +167,7 @@
             this.ведомостьToolStripMenuItem.Name = "ведомостьToolStripMenuItem";
             this.ведомостьToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.ведомостьToolStripMenuItem.Text = "Ведомость";
+            this.ведомостьToolStripMenuItem.Click += new System.EventHandler(this.ведомостьToolStripMenuItem_Click);
             // 
             // User_Main
             // 

@@ -202,5 +202,10 @@ namespace Uchet_othodov
                 MySqlOperations.Delete(MySqlQueries.Delete_Kartochka, dataGridView1.SelectedRows[i].Cells[0].Value.ToString());
             MySqlOperations.Select_DataGridView(MySqlQueries.Select_Kartochka_Otdela, dataGridView1, ID);
         }
+
+        private void ведомостьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MySqlOperations.Print_Vedomost(MySqlQueries, saveFileDialog1, ID);
+        }
     }
 }

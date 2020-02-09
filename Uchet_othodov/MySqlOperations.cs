@@ -280,9 +280,9 @@ namespace Uchet_othodov
             string fileName = null;
             DataGridView dataGridView = new DataGridView();
             Select_DataGridView(mySqlQueries.Select_Kartochka_Vedomost, dataGridView, ID);
-            //Select_Text(mySqlQueries.Select_Kartochka_Passport, ref output, ID);
-            saveFileDialog.Title = "Сохранить сопроводительный паспорт как";
-            saveFileDialog.FileName = "Сопроводительный паспорт за " + output.Split(';')[0] + " (" + output.Split(';')[1] + ')';
+            Select_Text(mySqlQueries.Select_Otdely_ComboBox_by_ID, ref output, ID);
+            saveFileDialog.Title = "Сохранить ведомость как";
+            saveFileDialog.FileName = "Ведомость отходов " + output;
             saveFileDialog.InitialDirectory = Application.StartupPath + "\\Отчеты\\";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -291,7 +291,7 @@ namespace Uchet_othodov
                 {
                     ExcelApp = new ExcelApplication();
                     workbooks = ExcelApp.Workbooks;
-                    workbook = workbooks.Open(Application.StartupPath + "\\Blanks\\Passport.xlsx");
+                    workbook = workbooks.Open(Application.StartupPath + "\\Blanks\\Vedomost.xlsx");
                     ExcelApp.Cells[15, 4] = ID;
                     ExcelApp.Cells[15, 6] = output.Split(';')[0];
                     ExcelApp.Cells[21, 10] = output.Split(';')[2];
