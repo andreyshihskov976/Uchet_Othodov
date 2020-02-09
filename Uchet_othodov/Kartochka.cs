@@ -165,7 +165,7 @@ namespace Uchet_othodov
         {
             string output = string.Empty;
             MySqlOperations.Select_Text(MySqlQueries.Select_Kartochka_Identify, ref output, ID);
-            if (output != "1")
+            if (output != "1" && ID != null)
                 Proverka_Ostatka();
         }
     }
