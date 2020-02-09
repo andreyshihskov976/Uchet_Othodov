@@ -48,12 +48,17 @@ namespace Uchet_othodov
                 }
             }
             else
-                MessageBox.Show("Поле количество не заполнено.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Поле 'Количество' не заполнено.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

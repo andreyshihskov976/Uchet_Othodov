@@ -43,7 +43,7 @@ namespace Uchet_othodov
                 this.Close();
             }
             else
-                MessageBox.Show("Поле количество не заполнено.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Поле 'Количество' не заполнено.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void button2_Click(object sender, EventArgs e)
