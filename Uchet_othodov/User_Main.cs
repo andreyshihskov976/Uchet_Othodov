@@ -28,12 +28,14 @@ namespace Uchet_othodov
             MySqlQueries = new MySqlQueries();
             MySqlOperations = new MySqlOperations(MySqlQueries);
             ID = iD;
+            MySqlOperations.Select_DataGridView(MySqlQueries.Select_Kartochka_Otdela, dataGridView1, ID);
+            identify = "kartochka";
         }
 
         private void карточкиОтходовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MySqlOperations.Select_DataGridView(MySqlQueries.Select_Kartochka_Otdela, dataGridView1, ID);
-            identify = "kartochka";
+            //MySqlOperations.Select_DataGridView(MySqlQueries.Select_Kartochka_Otdela, dataGridView1, ID);
+            //identify = "kartochka";
         }
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)

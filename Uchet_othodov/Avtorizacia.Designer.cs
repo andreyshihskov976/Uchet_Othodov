@@ -97,7 +97,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Avtorizacia";
+            this.ShowIcon = false;
             this.Text = "Окно авторизации";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -125,6 +125,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Pribytiya";
+            this.ShowIcon = false;
             this.Text = "Прибытие";
             this.ResumeLayout(false);
             this.PerformLayout();
