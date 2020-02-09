@@ -51,7 +51,15 @@ namespace Uchet_othodov
                 string output = string.Empty;
                 kartochka.button1.Visible = true;
                 kartochka.button3.Visible = false;
+                kartochka.button4.Visible = false;
+                kartochka.button5.Visible = false;
+                kartochka.button6.Visible = false;
+                kartochka.button7.Visible = false;
                 kartochka.button8.Visible = false;
+                kartochka.label6.Visible = false;
+                kartochka.label7.Visible = false;
+                kartochka.dataGridView1.Visible = false;
+                kartochka.dataGridView2.Visible = false;
                 MySqlOperations.Select_Text(MySqlQueries.Select_Otdely_ComboBox_by_ID, ref output, ID);
                 MySqlOperations.Search_In_ComboBox(output, kartochka.comboBox1);
                 kartochka.comboBox1.DropDownStyle = ComboBoxStyle.Simple;

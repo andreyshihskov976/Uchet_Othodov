@@ -343,8 +343,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         public System.Windows.Forms.Button button4;
         public System.Windows.Forms.Button button6;
         public System.Windows.Forms.Button button5;
@@ -354,5 +352,7 @@
         public System.Windows.Forms.DataGridView dataGridView1;
         public System.Windows.Forms.DataGridView dataGridView2;
         public System.Windows.Forms.Button button8;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label label7;
     }
 }

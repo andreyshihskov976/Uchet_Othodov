@@ -131,7 +131,7 @@
             // toolStripTextBox1
             // 
             this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(610, 23);
+            this.toolStripTextBox1.Size = new System.Drawing.Size(607, 23);
             // 
             // поискToolStripMenuItem
             // 

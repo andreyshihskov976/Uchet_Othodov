@@ -35,9 +35,23 @@ namespace Uchet_othodov
             string date1 = dateTimePicker1.Value.Year.ToString() + '-' + dateTimePicker1.Value.Month.ToString() + '-' + dateTimePicker1.Value.Day.ToString();
             string date2 = dateTimePicker2.Value.Year.ToString() + '-' + dateTimePicker2.Value.Month.ToString() + '-' + dateTimePicker2.Value.Day.ToString();
             MySqlOperations.Insert_Update(MySqlQueries.Insert_Kartochka, null, MySqlOperations.Select_ID_From_ComboBox(MySqlQueries.Select_ID_Otdela,comboBox1.Text), MySqlOperations.Select_ID_From_ComboBox(MySqlQueries.Select_ID_Othoda, comboBox2.Text), date1, date2, textBox1.Text);
-            button1.Enabled = false;
-            button3.Enabled = false;
+            button1.Visible = false;
+            button3.Visible = false;
+            button8.Visible = true;
+            comboBox1.Enabled = false;
+            comboBox2.Enabled = false;
+            textBox1.Enabled = false;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker2.Enabled = false;
             MySqlOperations.Select_Text(MySqlQueries.Last_Insert_ID, ref ID);
+            button4.Visible = true;
+            button5.Visible = true;
+            button6.Visible = true;
+            button7.Visible = true;
+            label6.Visible = true;
+            label7.Visible = true;
+            dataGridView1.Visible = true;
+            dataGridView2.Visible = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -52,12 +66,14 @@ namespace Uchet_othodov
                 string date1 = dateTimePicker1.Value.Year.ToString() + '-' + dateTimePicker1.Value.Month.ToString() + '-' + dateTimePicker1.Value.Day.ToString();
                 string date2 = dateTimePicker2.Value.Year.ToString() + '-' + dateTimePicker2.Value.Month.ToString() + '-' + dateTimePicker2.Value.Day.ToString();
                 MySqlOperations.Insert_Update(MySqlQueries.Update_Kartochka, ID, MySqlOperations.Select_ID_From_ComboBox(MySqlQueries.Select_ID_Otdela, comboBox1.Text), MySqlOperations.Select_ID_From_ComboBox(MySqlQueries.Select_ID_Othoda, comboBox2.Text), date1, date2, textBox1.Text);
-                button1.Enabled = false;
-                button3.Enabled = false;
-                comboBox2.Enabled = true;
-                dateTimePicker1.Enabled = true;
-                dateTimePicker2.Enabled = true;
-                textBox1.Enabled = true;
+                button1.Visible = false;
+                button3.Visible = false;
+                comboBox1.Enabled = false;
+                comboBox2.Enabled = false;
+                textBox1.Enabled = false;
+                dateTimePicker1.Enabled = false;
+                dateTimePicker2.Enabled = false;
+                button8.Visible = true;
             }
             else
                 MessageBox.Show("Поля не заполнены.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
