@@ -30,6 +30,30 @@ namespace Uchet_othodov
             MySqlOperations.Select_ComboBox(MySqlQueries.Select_Othody_ComboBox, comboBox2);
         }
 
+        private void Proverka_Ostatka()
+        {
+            string output = string.Empty;
+            MySqlOperations.Select_Text(MySqlQueries.Select_Kartochka_Ostatok, ref output, ID);
+            if (decimal.Parse(output) == decimal.Parse("0,00"))
+            {
+                if (MessageBox.Show("Необходимое количество отходов уже собрано." + '\n' + "Желаете отправить собранные отходы на утилизацию?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Ubytiya ubytiya = new Ubytiya(MySqlQueries, MySqlOperations, ID);
+                    ubytiya.button1.Visible = true;
+                    ubytiya.button3.Visible = false;
+                    ubytiya.dateTimePicker1.MinDate = DateTime.Parse(dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[2].Value.ToString());
+                    ubytiya.dateTimePicker1.MaxDate = dateTimePicker2.Value;
+                    ubytiya.ShowDialog();
+                    MySqlOperations.Select_DataGridView(MySqlQueries.Select_Ubytiya_Kartochki, dataGridView2, ID);
+                    button4.Enabled = false;
+                    button5.Enabled = false;
+                    button6.Enabled = false;
+                    button7.Enabled = false;
+                    button8.Enabled = false;
+                }
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             string date1 = dateTimePicker1.Value.Year.ToString() + '-' + dateTimePicker1.Value.Month.ToString() + '-' + dateTimePicker1.Value.Day.ToString();
@@ -85,8 +109,11 @@ namespace Uchet_othodov
             Pribytiya pribytiya = new Pribytiya(MySqlQueries,MySqlOperations,ID);
             pribytiya.button1.Visible = true;
             pribytiya.button3.Visible = false;
+            pribytiya.dateTimePicker1.MinDate = dateTimePicker1.Value;
+            pribytiya.dateTimePicker1.MaxDate = dateTimePicker2.Value;
             pribytiya.ShowDialog();
             MySqlOperations.Select_DataGridView(MySqlQueries.Select_Pribytiya_Kartochki, dataGridView1, ID);
+            Proverka_Ostatka();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -94,6 +121,8 @@ namespace Uchet_othodov
             Ubytiya ubytiya = new Ubytiya(MySqlQueries, MySqlOperations, ID);
             ubytiya.button1.Visible = true;
             ubytiya.button3.Visible = false;
+            ubytiya.dateTimePicker1.MinDate = DateTime.Parse(dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[2].Value.ToString());
+            ubytiya.dateTimePicker1.MaxDate = dateTimePicker2.Value;
             ubytiya.ShowDialog();
             MySqlOperations.Select_DataGridView(MySqlQueries.Select_Ubytiya_Kartochki, dataGridView2, ID);
         }
@@ -125,6 +154,19 @@ namespace Uchet_othodov
                 MySqlOperations.Delete(MySqlQueries.Delete_Ubytiya, dataGridView2.SelectedRows[0].Cells[0].Value.ToString());
                 MySqlOperations.Select_DataGridView(MySqlQueries.Select_Ubytiya_Kartochki, dataGridView2, ID);
             }
+        }
+
+        private void Kartochka_Load(object sender, EventArgs e)
+        {
+            //Proverka_Ostatka();
+        }
+
+        private void Kartochka_Shown(object sender, EventArgs e)
+        {
+            string output = string.Empty;
+            MySqlOperations.Select_Text(MySqlQueries.Select_Kartochka_Identify, ref output, ID);
+            if (output != "1")
+                Proverka_Ostatka();
         }
     }
 }

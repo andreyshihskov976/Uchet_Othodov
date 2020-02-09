@@ -180,5 +180,20 @@ namespace Uchet_othodov
         {
             MySqlOperations.Search(toolStripTextBox1,dataGridView1);
         }
+
+        private void сопроводительныйПаспортToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count <= 1)
+            {
+                string output = string.Empty;
+                MySqlOperations.Select_Text(MySqlQueries.Select_Kartochka_Identify, ref output, dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                if (output == "1")
+                    MySqlOperations.Print_Passport(MySqlQueries, saveFileDialog1, dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                else
+                    MessageBox.Show("Невозможно создать сопроводительный паспорт на основании выбранной карточки, так как она ещё не закрыта." + '\n' + "Пожалуйста закройте эту карточку выбытием или выберите уже закрытую.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+                MessageBox.Show("Невозможно создать сопроводительный паспорт на основании нескольких карточек." + '\n' + "Пожалуйста выберите одну карточку, на основании которой необходимо составить сопроводительный паспорт", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
     }
 }

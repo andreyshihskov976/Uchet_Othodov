@@ -40,6 +40,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.поискToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.сопроводительныйПаспортToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ведомостьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -72,7 +75,7 @@
             this.toolStripSeparator6,
             this.toolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(197, 98);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(197, 120);
             // 
             // toolStripMenuItem4
             // 
@@ -110,6 +113,9 @@
             // 
             // toolStripMenuItem1
             // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сопроводительныйПаспортToolStripMenuItem,
+            this.ведомостьToolStripMenuItem});
             this.toolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem1.Image")));
             this.toolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
@@ -139,6 +145,27 @@
             this.поискToolStripMenuItem.Size = new System.Drawing.Size(54, 23);
             this.поискToolStripMenuItem.Text = "Поиск";
             this.поискToolStripMenuItem.Click += new System.EventHandler(this.поискToolStripMenuItem_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.AddExtension = false;
+            this.saveFileDialog1.CreatePrompt = true;
+            this.saveFileDialog1.DefaultExt = "Книга Excel|*.xlsx";
+            this.saveFileDialog1.Filter = "Книга Excel|*.xlsx|Книга Excel 93-2003|*.xls|PDF|*.pdf";
+            this.saveFileDialog1.OverwritePrompt = false;
+            // 
+            // сопроводительныйПаспортToolStripMenuItem
+            // 
+            this.сопроводительныйПаспортToolStripMenuItem.Name = "сопроводительныйПаспортToolStripMenuItem";
+            this.сопроводительныйПаспортToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.сопроводительныйПаспортToolStripMenuItem.Text = "Сопроводительный паспорт";
+            this.сопроводительныйПаспортToolStripMenuItem.Click += new System.EventHandler(this.сопроводительныйПаспортToolStripMenuItem_Click);
+            // 
+            // ведомостьToolStripMenuItem
+            // 
+            this.ведомостьToolStripMenuItem.Name = "ведомостьToolStripMenuItem";
+            this.ведомостьToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.ведомостьToolStripMenuItem.Text = "Ведомость";
             // 
             // User_Main
             // 
@@ -176,5 +203,8 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.ToolStripMenuItem поискToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem сопроводительныйПаспортToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ведомостьToolStripMenuItem;
     }
 }

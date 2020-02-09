@@ -50,6 +50,10 @@ FROM pribytiya INNER JOIN kartochka ON pribytiya.ID_Kartochki = kartochka.ID_Kar
 INNER JOIN otdely ON kartochka.ID_Otdela = otdely.ID_Otdela
 WHERE kartochka.ID_kartochki = @ID";
 
+        public string Select_Sum_Pribytiya = $@"SELECT SUM(pribytiya.Kolichestvo) 
+FROM pribytiya INNER JOIN kartochka ON pribytiya.ID_Kartochki = kartochka.ID_Kartochki
+WHERE pribytiya.ID_Kartochki = @ID;";
+
         public string Select_Ubytiya = $@"SELECT ID_Ubytiya AS 'ID Прибытия', CONCAT(kartochka.ID_Kartochki,' (', otdely.Name,')') AS 'Карточка, №', 
 Date_ubytiya AS 'Дата выбытия', Kolichestvo AS 'Количество', organizacii.Name AS 'Получила организация'
 FROM ubytiya INNER JOIN kartochka ON ubytiya.ID_Kartochki = kartochka.ID_Kartochki
@@ -57,7 +61,7 @@ INNER JOIN otdely ON kartochka.ID_Otdela = otdely.ID_Otdela
 INNER JOIN organizacii ON ubytiya.ID_Organizacii = organizacii.ID_Organizacii;";
 
         public string Select_Ubytiya_Kartochki = $@"SELECT ID_Ubytiya AS 'ID Прибытия', CONCAT(kartochka.ID_Kartochki,' (', otdely.Name,')') AS 'Карточка, №', 
-Date_ubytiya AS 'Дата убытия', Kolichestvo AS 'Количество', organizacii.Name AS 'Получила организация'
+Date_ubytiya AS 'Дата выбытия', Kolichestvo AS 'Количество', organizacii.Name AS 'Получила организация'
 FROM ubytiya INNER JOIN kartochka ON ubytiya.ID_Kartochki = kartochka.ID_Kartochki
 INNER JOIN otdely ON kartochka.ID_Otdela = otdely.ID_Otdela
 INNER JOIN organizacii ON ubytiya.ID_Organizacii = organizacii.ID_Organizacii
@@ -94,6 +98,14 @@ GROUP BY pribytiya.ID_Kartochki)
 FROM kartochka INNER JOIN pribytiya ON kartochka.ID_Kartochki = pribytiya.ID_Kartochki
 WHERE kartochka.ID_Kartochki = @ID
 GROUP BY kartochka.ID_Kartochki;";
+
+        public string Select_Kartochka_Passport = $@"SET lc_time_names = 'ru_RU';
+SELECT CONCAT(DATE_FORMAT(ubytiya.Date_ubytiya,'%d %M% %Y'), ';',othody.Name, ';', otdely.Name, ';', organizacii.Name)
+FROM ubytiya INNER JOIN kartochka ON ubytiya.ID_Kartochki = kartochka.ID_Kartochki
+INNER JOIN otdely ON kartochka.ID_Otdela = otdely.ID_Otdela
+INNER JOIN organizacii ON ubytiya.ID_Organizacii = organizacii.ID_Organizacii
+INNER JOIN othody ON kartochka.ID_Othoda = othody.ID_Othoda
+WHERE ubytiya.ID_Kartochki = @ID;";
 
         public string Select_Avtorizacia = $@"SELECT EXISTS(SELECT dostup.ID_Sotrudnika, dostup.Parol 
 FROM dostup INNER JOIN sotrudniki ON dostup.ID_Sotrudnika = sotrudniki.ID_Sotrudnika 
@@ -133,7 +145,9 @@ END";
 (ID_Kartochki, Date_pribytiya, Kolichestvo) VALUES (@ID, @Value1, @Value2);";
 
         public string Insert_Ubytiya = $@"INSERT INTO ubytiya 
-(ID_Kartochki, Date_ubytiya, Kolichestvo, ID_Organizacii) VALUES (@ID, @Value1, @Value2, @Value3);";
+(ID_Kartochki, Date_ubytiya, Kolichestvo, ID_Organizacii) VALUES (@ID, @Value1, @Value2, @Value3);
+UPDATE kartochka 
+SET Identify='1' WHERE ID_Kartochki = @ID;";
 
         public string Insert_Kartochka = $@"INSERT INTO kartochka
 (`ID_Otdela`, `ID_Othoda`, `Date_Nachala_Sbora`, `Date_Okonchaniya_Sbora`, `Planiruemoe_Kolichestvo`, `Identify`) 
@@ -160,9 +174,6 @@ VALUES (@Value1, @Value2, @Value3, @Value4, @Value5, b'0');";
         public string Update_Kartochka = $@"UPDATE kartochka
 SET ID_Otdela = @Value1, ID_Othoda = @Value2, Date_Nachala_Sbora = @Value3, Date_Okonchaniya_Sbora = @Value4, Planiruemoe_Kolichestvo = @Value5 
 WHERE ID_Kartochki = @ID;";
-
-        public string Update_Identify = $@"UPDATE kartochka 
-SET Identify='1' WHERE ID_Kartochki = @ID;";
 
         //Запросы Update
 

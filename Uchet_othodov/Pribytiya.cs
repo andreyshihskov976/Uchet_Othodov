@@ -33,13 +33,14 @@ namespace Uchet_othodov
             if (textBox1.Text != "")
             {
                 string output = string.Empty;
+                textBox1.Text = textBox1.Text.Replace('.', ',');
                 MySqlOperations.Select_Text(MySqlQueries.Select_Kartochka_Ostatok, ref output, ID);
                 if (output == "" || decimal.Parse(output) >= decimal.Parse(textBox1.Text))
                 {
                     string date1 = dateTimePicker1.Value.Year.ToString() + '-' + dateTimePicker1.Value.Month.ToString() + '-' + dateTimePicker1.Value.Day.ToString();
                     MySqlOperations.Insert_Update(MySqlQueries.Insert_Pribytiya, ID, date1, textBox1.Text);
                     this.Close();
-                    MySqlOperations.Select_Text(MySqlQueries.Select_Kartochka_Ostatok, ref output, ID);
+                    
                 }
                 else
                 {
@@ -53,11 +54,6 @@ namespace Uchet_othodov
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

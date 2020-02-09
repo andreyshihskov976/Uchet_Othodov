@@ -48,7 +48,6 @@
             this.button3.TabIndex = 34;
             this.button3.Text = "Изменить";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -160,11 +159,11 @@
         public System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         public System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.TextBox textBox1;
         public System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

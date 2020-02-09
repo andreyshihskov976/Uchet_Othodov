@@ -228,5 +228,49 @@ namespace Uchet_othodov
         }
 
         //Универсальные методы
+
+
+        //Методы печати
+
+        public void Print_Passport(MySqlQueries mySqlQueries, SaveFileDialog saveFileDialog, string ID = null)
+        {
+            ExcelApplication ExcelApp = null;
+            Workbooks workbooks = null;
+            Workbook workbook = null;
+            string output = null;
+            string fileName = null;
+            Select_Text(mySqlQueries.Select_Kartochka_Passport, ref output, ID);
+            saveFileDialog.Title = "Сохранить сопроводительный паспорт как";
+            saveFileDialog.FileName = "Сопроводительный паспорт за " + output.Split(';')[0] + " (" + output.Split(';')[1] + ')';
+            saveFileDialog.InitialDirectory = Application.StartupPath + "\\Отчеты\\";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                fileName = saveFileDialog.FileName;
+                try
+                {
+                    ExcelApp = new ExcelApplication();
+                    workbooks = ExcelApp.Workbooks;
+                    workbook = workbooks.Open(Application.StartupPath + "\\Blanks\\Passport.xlsx");
+                    ExcelApp.Cells[15, 4] = ID;
+                    ExcelApp.Cells[15, 6] = output.Split(';')[0];
+                    ExcelApp.Cells[21, 10] = output.Split(';')[2];
+                    ExcelApp.Cells[24, 6] = output.Split(';')[3];
+                    workbook.SaveAs(fileName);
+                    ExcelApp.Visible = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    Marshal.ReleaseComObject(workbook);
+                    Marshal.ReleaseComObject(workbooks);
+                    Marshal.ReleaseComObject(ExcelApp);
+                }
+            }
+        }
+
+        //Методы печати
     }
 }

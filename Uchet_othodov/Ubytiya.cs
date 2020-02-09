@@ -28,15 +28,18 @@ namespace Uchet_othodov
             MySqlOperations = mySqlOperations;
             ID = iD;
             MySqlOperations.Select_ComboBox(MySqlQueries.Select_Organizacii_ComboBox, comboBox1);
+            string output = string.Empty;
+            MySqlOperations.Select_Text(MySqlQueries.Select_Sum_Pribytiya, ref output, ID);
+            textBox1.Text = output;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text != "" && comboBox1.Text != "")
             {
+                textBox1.Text = textBox1.Text.Replace('.', ',');
                 string date1 = dateTimePicker1.Value.Year.ToString() + '-' + dateTimePicker1.Value.Month.ToString() + '-' + dateTimePicker1.Value.Day.ToString();
                 MySqlOperations.Insert_Update(MySqlQueries.Insert_Ubytiya, ID, date1, textBox1.Text, MySqlOperations.Select_ID_From_ComboBox(MySqlQueries.Select_ID_Organizacii, comboBox1.Text));
-                MySqlOperations.Insert_Update(MySqlQueries.Update_Identify, ID);
                 this.Close();
             }
             else
@@ -45,12 +48,7 @@ namespace Uchet_othodov
 
         private void button2_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
+            this.Close();
         }
     }
 }

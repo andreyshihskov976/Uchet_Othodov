@@ -323,6 +323,8 @@
             this.Name = "Kartochka";
             this.ShowIcon = false;
             this.Text = "Карточка учета отхода";
+            this.Load += new System.EventHandler(this.Kartochka_Load);
+            this.Shown += new System.EventHandler(this.Kartochka_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
