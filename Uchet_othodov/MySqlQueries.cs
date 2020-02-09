@@ -107,6 +107,15 @@ INNER JOIN organizacii ON ubytiya.ID_Organizacii = organizacii.ID_Organizacii
 INNER JOIN othody ON kartochka.ID_Othoda = othody.ID_Othoda
 WHERE ubytiya.ID_Kartochki = @ID;";
 
+        public string Select_Kartochka_Vedomost = $@"SET lc_time_names = 'ru_RU';
+SELECT kartochka.ID_Kartochki, DATE_FORMAT(ubytiya.Date_ubytiya,'%d %M% %Y'), othody.Name, organizacii.Name, ubytiya.Kolichestvo
+FROM ubytiya INNER JOIN kartochka ON ubytiya.ID_Kartochki = kartochka.ID_Kartochki
+INNER JOIN organizacii ON ubytiya.ID_Organizacii = organizacii.ID_Organizacii
+INNER JOIN othody ON othody.ID_Othoda = kartochka.ID_Othoda
+INNER JOIN otdely ON otdely.ID_Otdela = kartochka.ID_Otdela
+WHERE otdely.ID_Otdela = @ID
+GROUP BY kartochka.ID_Kartochki;";
+
         public string Select_Avtorizacia = $@"SELECT EXISTS(SELECT dostup.ID_Sotrudnika, dostup.Parol 
 FROM dostup INNER JOIN sotrudniki ON dostup.ID_Sotrudnika = sotrudniki.ID_Sotrudnika 
 WHERE dostup.Parol = @Value2 

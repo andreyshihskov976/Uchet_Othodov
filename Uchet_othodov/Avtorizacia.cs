@@ -26,19 +26,20 @@ namespace Uchet_othodov
         private void button1_Click(object sender, EventArgs e)
         {
             MySqlOperations.OpenConnection();
-            MySqlOperations.Select_Text(MySqlQueries.Select_Avtorizacia, ref ID, null, textBox2.Text, textBox1.Text);
-            if (ID == "0")
+            MySqlOperations.Select_Text(MySqlQueries.Select_Avtorizacia, ref ID, null, textBox1.Text, textBox2.Text);
+            if (ID == "1")
             {
                 MySqlOperations.Select_Text(MySqlQueries.Select_SignIn, ref ID, null, textBox1.Text);
                 if (ID == "0")
                     this.DialogResult = DialogResult.Yes;
                 else
                     this.DialogResult = DialogResult.No;
+                
+                this.Close();
             }
             else
                 MessageBox.Show("Неверный пароль или логин.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             MySqlOperations.CloseConnection();
-            this.Close();
         }
     }
 }
