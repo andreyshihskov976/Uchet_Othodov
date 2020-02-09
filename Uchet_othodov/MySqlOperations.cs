@@ -271,14 +271,13 @@ namespace Uchet_othodov
             }
         }
 
-        public void Print_Vedomost(MySqlQueries mySqlQueries, SaveFileDialog saveFileDialog, string ID = null)
+        public void Print_Vedomost(MySqlQueries mySqlQueries, SaveFileDialog saveFileDialog, DataGridView dataGridView, string ID = null)
         {
             ExcelApplication ExcelApp = null;
             Workbooks workbooks = null;
             Workbook workbook = null;
             string output = null;
             string fileName = null;
-            DataGridView dataGridView = new DataGridView();
             Select_DataGridView(mySqlQueries.Select_Kartochka_Vedomost, dataGridView, ID);
             Select_Text(mySqlQueries.Select_Otdely_ComboBox_by_ID, ref output, ID);
             saveFileDialog.Title = "Сохранить ведомость как";
@@ -292,10 +291,18 @@ namespace Uchet_othodov
                     ExcelApp = new ExcelApplication();
                     workbooks = ExcelApp.Workbooks;
                     workbook = workbooks.Open(Application.StartupPath + "\\Blanks\\Vedomost.xlsx");
-                    ExcelApp.Cells[15, 4] = ID;
-                    ExcelApp.Cells[15, 6] = output.Split(';')[0];
-                    ExcelApp.Cells[21, 10] = output.Split(';')[2];
-                    ExcelApp.Cells[24, 6] = output.Split(';')[3];
+                    int ExCol = 1;
+                    int ExRow = 9;
+                    for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
+                    {
+                        for (int j = 0; j < dataGridView.Columns.Count; j++)
+                        {
+                            ExcelApp.Cells[ExRow, ExCol] = dataGridView.Rows[i].Cells[j].Value.ToString();
+                            ExCol++;
+                        }
+                        ExCol = 1;
+                        ExRow++;
+                    }
                     workbook.SaveAs(fileName);
                     ExcelApp.Visible = true;
                 }

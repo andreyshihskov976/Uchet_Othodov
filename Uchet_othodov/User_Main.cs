@@ -208,7 +208,7 @@ namespace Uchet_othodov
 
         private void ведомостьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MySqlOperations.Print_Vedomost(MySqlQueries, saveFileDialog1, ID);
+            MySqlOperations.Print_Vedomost(MySqlQueries, saveFileDialog1, dataGridView2, ID);
         }
     }
 }
